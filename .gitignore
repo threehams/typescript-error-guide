@@ -1,0 +1,6 @@
+node_modules
+.next
+.vscode
+yarn-error.log
+cypress/screenshots
+cypress/videos
