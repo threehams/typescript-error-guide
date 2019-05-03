@@ -1,3 +1,4 @@
+// Diagnostic codes: ts2339, ts2531, ts2532
 import { get } from "lodash";
 import { oc } from "ts-optchain";
 

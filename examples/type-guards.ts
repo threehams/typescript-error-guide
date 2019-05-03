@@ -1,3 +1,4 @@
+// diagnostic codes: ts2339
 // avoid polluting other files
 export {};
 
