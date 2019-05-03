@@ -14,10 +14,11 @@ interface Result {
 let buildResult;
 buildResult = (name?: string) => {
   const result = {};
+  // error, this property doesn't exist on {}
   if (name) {
     result.name = name;
   }
-  result.value = 1; // error, this property doesn't exist on {}
+  result.value = 1;
 };
 
 buildResult = (name?: string) => {
