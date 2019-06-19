@@ -1,3 +1,4 @@
+// Diagnostic codes: ts2339, ts2531, ts2532
 import { get } from "lodash";
 import { oc } from "ts-optchain";
 
@@ -44,12 +45,7 @@ const doStuff = (data?: UnreliableData) => {
   const nullableNumber = oc(data).mayExist.deepMayExist.nullableNumber;
   const nullableFunction = oc(data).mayExist.deepMayExist.nullableFunction;
   const reversedByDefault = oc(data).mayExist.deepMayExist.nullableFunction(
-    name => {
-      return name
-        .split("")
-        .reverse()
-        .join("");
-    }
+    name => name
   );
 };
 
@@ -87,6 +83,6 @@ const doStuffWithUnions = (data?: UnreliableUnionData) => {
   if (!!structure && "deepMayExist" in structure) {
     oc(structure).deepMayExist.nullableNumber;
   }
-  // or do a type assertion
+  // or do a type assertion (unsafe)
   oc(structure as StructureOne).deepMayExist.nullableNumber(0);
 };

@@ -1,10 +1,11 @@
-// avoid polluting other files
 export {};
+// diagnostic codes: ts2339, ts2741
 
 // possibly related: control flow analysis
 // https://github.com/Microsoft/TypeScript/issues/9998
 
-// Sometimes, you need to conditionally
+// Sometimes, you need to initialize an object and add properties
+// one by one, often with a check each time.
 
 interface Result {
   name?: string;
@@ -14,10 +15,11 @@ interface Result {
 let buildResult;
 buildResult = (name?: string) => {
   const result = {};
+  // error, this property doesn't exist on {}
   if (name) {
     result.name = name;
   }
-  result.value = 1; // error, this property doesn't exist on {}
+  result.value = 1;
 };
 
 buildResult = (name?: string) => {
