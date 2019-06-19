@@ -1,11 +1,11 @@
-// diagnostic codes: ts2339, ts2741
-// avoid polluting other files
 export {};
+// diagnostic codes: ts2339, ts2741
 
 // possibly related: control flow analysis
 // https://github.com/Microsoft/TypeScript/issues/9998
 
-// Sometimes, you need to conditionally
+// Sometimes, you need to initialize an object and add properties
+// one by one, often with a check each time.
 
 interface Result {
   name?: string;
