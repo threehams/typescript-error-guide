@@ -42,7 +42,7 @@ interface Photo {
 // using `in` is "less safe" for refactoring than other guards.
 // You can check any property, even something that doesn't exist on
 // either object. Use with caution.
-const showMedia = (media: Photo | Video) => {
+const showMoreMedia = (media: Photo | Video) => {
   if (media.type === "photo") {
     media; // Photo
   }

@@ -48,6 +48,11 @@ const doStuff = (data?: UnreliableData) => {
   const reversedByDefault = oc(data).mayExist.deepMayExist.nullableFunction(
     name => name,
   );
+  // this catches properties which don't exist
+  const intentionalError = oc(data).mayExist.fdsafdsavbfd.nullableNumber(0);
+  // and the default value needs to match the possible values
+  // (the error message could be better here)
+  const badDefault = oc(data).mayExist.deepMayExist.nullableNumber("string");
 };
 
 interface StructureOne {

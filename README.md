@@ -62,6 +62,20 @@ Right! Generics accept anything by default, so your `add()` function suddenly ne
 
 This one trips up everyone at some point. There's an explanation at [Object.keys and Object.entries](examples/object-keys-and-entries.ts). Don't worry, there's a reason for it - and a few ways to opt-in to the behavior you want.
 
+## I don't control the object being used. How do I use the `object` type?
+
+
+
+# React-Specific Errors
+
+## TypeScript isn't catching returning `undefined` within a component.
+
+Function components in React
+
+## I'm getting an error unless I include "children" in props.
+
+Props shoul
+
 # For Library Authors
 
 ## I want to make my library work with TypeScript. What's all this .d.ts nonsense?

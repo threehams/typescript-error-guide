@@ -1,6 +1,7 @@
 // Excess Property Checking (abbreviated to EPC from here) is a series of checks which
 
-// All types are "open" or "inexact" in TypeScript. There currently are no "exact" types.
+// All types are "open" or "inexact" in TypeScript. There currently are no
+// "closed" or "exact" types.
 const getName = (person: { name: string }) => {
   return person.name;
 };
@@ -104,3 +105,7 @@ const param1: Parameters<Overloaded>[0] = 1;
 const param2: Parameters<Overloaded>[0] = "string";
 const reversedParam1: Parameters<ReversedOverloaded>[0] = 1;
 const reversedParam2: Parameters<ReversedOverloaded>[0] = "string";
+
+// Complex example:
+
+() => {};
