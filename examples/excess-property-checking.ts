@@ -1,4 +1,14 @@
-// Excess Property Checking (abbreviated to EPC from here) is a series of checks which
+// Excess Property Checking (abbreviated to EPC from here) is a system which detects
+// when extra properties are added to objects when it's likely a mistake, while still
+// allowing most object to contain extra properties for flexibility.
+
+// At its best, this allows you to reuse the same function with very different inputs,
+// as you define only the subset of data you need from an object. Most functions don't
+// have a problem accepting additional properties on objects.
+
+// At its worst, this is confusing or even unsafe at runtime.
+
+// Knowing how this works is very important.
 
 // All types are "open" or "inexact" in TypeScript. There currently are no
 // "closed" or "exact" types.
