@@ -68,13 +68,17 @@ This one trips up everyone at some point. There's an explanation at [Object.keys
 
 # React-Specific Errors
 
-## TypeScript isn't catching returning `undefined` within a component.
+For most React errors, there's an excellect [cheat sheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet) for using React with TypeScript. This is updated constantly with new information.
 
-Function components in React
+## How do I work with `children`? All I get are errors trying to access anything.
 
-## I'm getting an error unless I include "children" in props.
+A React child is union of many, many possible things which cannot be narrowed except by complex type guards at every object depth. When iterating over children, it's probably best to use `any` and distrust the existence of any property:
 
-Props shoul
+```tsx
+const containsDiv = React.Children.toArray(children).some((child: any) => {
+  return child?.type?.displayName === "Header";
+});
+```
 
 # For Library Authors
 
