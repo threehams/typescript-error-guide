@@ -1,16 +1,26 @@
 # The TypeScript Error Guide
 
+TypeScript makes some normally complex tasks very easy, but it can make some seemingly-simple tasks more difficult,
+
 ## Some things that were hard: now easy!
 
+Change an API? Change the type and you'll see everywhere you need to update. Need to rename something used in 500 places? Hit F2 and rename. Anything requiring fle
+
 ## Some things that were easy: now hard.
+
+TypeScript actively discourages highly-dynamic code, redefining variables to mean different things, and anything other than simple (property) strings for APIs. What do these look like?
+
+```tsx
+// Dynamic code: 
+```
+
+
 
 # For Site / Application Developers
 
 ## I'm trying to start with an empty object and add properties one by one, and TypeScript gives me errors no matter what I do. I've given up and `// @ts-ignore`d them.
 
 When you create an empty object, there's just no good way for TS to ensure that all properties have been added _after_ the object has already been specified. Don't worry, though - there are lots of ways to accomplish this, and one of them is very concise as well! See: [Build Up Object](examples/build-up-object.ts).
-
-## I'm accepting
 
 ## Why isn't TypeScript showing errors on extra properties I have on an object?
 
@@ -78,6 +88,32 @@ A React child is union of many, many possible things which cannot be narrowed ex
 const containsDiv = React.Children.toArray(children).some((child: any) => {
   return child?.type?.displayName === "Header";
 });
+```
+
+## I'm getting a "not a constructor function for JSX elements" error.
+
+You're returning something from a function component which React doesn't accept, likely `undefined`. Your code might be fine now, but if it ever hits that `undefined` case, you'll get a runtime error.
+
+```tsx
+interface Props {
+  text?: string;
+}
+const Button = ({ text }: Props) => {
+  return text && <button>{text}</button>;
+};
+```
+
+If `text` isn't supplied to Button, it'll return the current value of `text` (which is `undefined`). React currently throws in this case.
+
+To get a better error message, add a return type annotation to your function component of either `ReactElement` or `ReactElement | null`. This will move the error to the return statement:
+
+```tsx
+interface Props {
+  text?: string;
+}
+const Button = ({ text }: Props): ReactElement | null => {
+  return text ? <button>{text}</button> : null;
+};
 ```
 
 # For Library Authors
