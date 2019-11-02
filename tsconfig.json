@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
     "lib": ["dom", "esnext"],

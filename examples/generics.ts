@@ -44,7 +44,7 @@
 // Let's use this above:
 () => {
   type Last<TItem> = (item: TItem) => TItem;
-  const last = (item: string) => {
+  const last: Last<> = item => {
     return item[item.length - 1];
   };
 

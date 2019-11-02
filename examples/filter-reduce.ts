@@ -13,7 +13,7 @@ function toStrings(arr: object[]): string[] {
       acc.push(obj.toString());
       return acc;
     },
-    [] as string[]
+    [] as string[],
   );
 }
 
@@ -32,7 +32,7 @@ interface User {
 }
 const fields = [
   { name: "name", value: "bob" },
-  { name: "phone", value: "8005552000" }
+  { name: "phone", value: "8005552000" },
 ] as const;
 
 fields.reduce<User>((acc, field) => {
@@ -42,14 +42,17 @@ fields.reduce<User>((acc, field) => {
 }, {});
 
 arr.reduce((acc, obj) => {
+  // error: No index signature with a parameter of type 'number' was found on type '{}'
   acc[obj] = true;
   return acc;
 }, {});
 
-const arrayWithNulls = [1, 2, null, undefined];
+const arrayWithNulls = [1, 2, null];
 // filter is a type guard = needs to explictly know how to remove the union
 const stillHasNulls: number[] = arrayWithNulls.filter(x => !!x);
-const withoutNulls: number[] = arrayWithNulls.filter((x): x is number => !!x);
+const withoutNulls: number[] = arrayWithNulls.filter(
+  (x): x is number => x !== null,
+);
 
 // since this is tedious, and boolean cast wipes out 0 and "" anyway:
 const filterNulls = Array.prototype.filter(item => item != null);

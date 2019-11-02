@@ -11,16 +11,20 @@ Change an API? Change the type and you'll see everywhere you need to update. Nee
 TypeScript actively discourages highly-dynamic code, redefining variables to mean different things, and anything other than simple (property) strings for APIs. What do these look like?
 
 ```tsx
-// Dynamic code: 
+// Dynamic code:
 ```
-
-
 
 # For Site / Application Developers
 
 ## I'm trying to start with an empty object and add properties one by one, and TypeScript gives me errors no matter what I do. I've given up and `// @ts-ignore`d them.
 
 When you create an empty object, there's just no good way for TS to ensure that all properties have been added _after_ the object has already been specified. Don't worry, though - there are lots of ways to accomplish this, and one of them is very concise as well! See: [Build Up Object](examples/build-up-object.ts).
+
+## What's this `never` type?
+
+This is covered in the new handbook under the [never type](https://microsoft.github.io/TypeScript-New-Handbook/chapters/more-on-functions/#never).
+
+Additionally, arrays start out as `never[]` when the type cannot be inferred. See: [Never](examples/never.ts)
 
 ## Why isn't TypeScript showing errors on extra properties I have on an object?
 
@@ -74,7 +78,9 @@ This one trips up everyone at some point. There's an explanation at [Object.keys
 
 ## I don't control the object being used. How do I use the `object` type?
 
+## How can I tell TypeScript about a global variable that exists without using @ts-ignore or `any`?
 
+You're looking for the jargony `ambient context` and `ambient declaration`. When you put `declare` in front of a function, constant, or module, you are saying "trust me, this exists, and is of this type." This is especially confusing when looking at the differences between .d.ts and .ts files, so see [Types without implementations](examples/types-without-implementations.ts).
 
 # React-Specific Errors
 

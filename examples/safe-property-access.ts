@@ -95,5 +95,6 @@ const doStuffWithUnions = (data?: UnreliableUnionData) => {
 const doStuffWithDefaults = (data: UnreliableData) => {
   // "Initializer provides no value for this binding element and the binding element has no default value.ts(2525)"
   const { nullableString }: UnreliableData["mayExist"] = data.mayExist || {};
-  // This will be fixed when TypeScript 3.6 is released.
+  // This will be fixed when TypeScript 3.6 is released:
+  // https://github.com/microsoft/TypeScript/pull/31711
 };
