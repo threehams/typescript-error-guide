@@ -6,7 +6,7 @@ export {};
 
 // tl;dr rules for avoiding this:
 // 1. never reassign parameters. https://eslint.org/docs/rules/no-param-reassign
-// 2.
+// 2. use `const` unless you need `let` (enable the prefer-const eslint rule)
 
 const maybeAsync = (callback: () => void) => {
   callback();

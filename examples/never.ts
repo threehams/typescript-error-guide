@@ -19,11 +19,18 @@ function fail(msg: string): never {
 }
 
 // The other time you'll see `never` is when creating a new empty array, when
-// noImplicityAny is set to `false`. It is extremely unlikely you will see this,
-// but the type defaults to `never[]` to prevent it from being inferred as `any[]`.
+// noImplicityAny is set to `false`. It is unlikely you will see this, but the
+// type defaults to `never[]` to prevent it from being inferred as `any[]`.
 // Simple fix: give it a type, or set `noImplicitAny` to true.
 // https://github.com/microsoft/TypeScript/pull/8944
 
-const emptyArray = []; // never[]
-emptyArray.push(1); // nope!
-const emptyNumberArray: number[] = [];
+// Sometimes `never[]` is really a symptom of another error. Here's a case where
+// an object is
+
+type Resolver = {
+  location: { city: string; state: string };
+};
+
+const resolver: Resolver = {
+  location: [],
+};

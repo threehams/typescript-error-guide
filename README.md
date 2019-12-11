@@ -4,21 +4,39 @@ TypeScript makes some normally complex tasks very easy, but it can make some see
 
 ## Some things that were hard: now easy!
 
-Change an API? Change the type and you'll see everywhere you need to update. Need to rename something used in 500 places? Hit F2 and rename. Anything requiring fle
+Change an API? Change the type and you'll see everywhere you need to update. Need to rename something used in 500 places? Hit F2 and rename.
 
 ## Some things that were easy: now hard.
 
-TypeScript actively discourages highly-dynamic code, redefining variables to mean different things, and anything other than simple (property) strings for APIs. What do these look like?
+TypeScript actively discourages highly-dynamic code, redefining variables at will, and APIs that put a lot of meaning into strings. What do these look like?
 
 ```tsx
-// Dynamic code:
+const sizes = {
+  "size-sm": 1,
+  "size-md": 2,
+  "size-lg": 3,
+};
+
+const getSize = (size: "sm" | "md" | "lg") => {
+  return sizes[`size-${size}`];
+};
 ```
+
+This site is all about letting you know about these limitations _without_ all the type-system jargon you'll normally see.
+
+# Diagnostic Codes
+
+TypeScript has a code for every error, such as `ts(2741)`. While the error message may look very different each time, the underlying problem is the same.
+
+If you're hitting a problem, search for that code within this page.
 
 # For Site / Application Developers
 
 ## I'm trying to start with an empty object and add properties one by one, and TypeScript gives me errors no matter what I do. I've given up and `// @ts-ignore`d them.
 
 When you create an empty object, there's just no good way for TS to ensure that all properties have been added _after_ the object has already been specified. Don't worry, though - there are lots of ways to accomplish this, and one of them is very concise as well! See: [Build Up Object](examples/build-up-object.ts).
+
+Diagnostic codes: `ts(2339)`, `ts(2741)`
 
 ## What's this `never` type?
 

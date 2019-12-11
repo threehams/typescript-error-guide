@@ -2,6 +2,7 @@ export {};
 
 // go over APIs which can't be modeled at all
 // example: camelize
+// issue: https://github.com/microsoft/TypeScript/issues/12754
 () => {
   // from: https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
   const camelize = (str: string) => {
