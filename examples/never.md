@@ -1,21 +1,19 @@
-export {};
-// The `never` type is a condition which should never happen.
-// This most commonly happens when a function throws an error, or when if/else/switch/case
-// runs out of options and hits an `else` or `default` case.
+The `never` type is a condition which should never happen. This most commonly happens when a function throws an error, or when if/else/switch/case runs out of options and hits an `else` or `default` case.
 
-// from: https://microsoft.github.io/TypeScript-New-Handbook/chapters/more-on-functions/#never
-function fn(x: string | number) {
+```tsx
+function fn(x: string | number): string {
   if (typeof x === "string") {
-    // do something
+    return x;
   } else if (typeof x === "number") {
-    // do something else
+    return x.toString();
   } else {
     x; // has type 'never'!
   }
 }
+```
 
 function fail(msg: string): never {
-  throw new Error(msg);
+throw new Error(msg);
 }
 
 // The other time you'll see `never` is when creating a new empty array, when
@@ -28,9 +26,13 @@ function fail(msg: string): never {
 // an object is
 
 type Resolver = {
-  location: { city: string; state: string };
+location: { city: string; state: string };
 };
 
 const resolver: Resolver = {
-  location: [],
+location: [],
 };
+
+## References
+
+[https://microsoft.github.io/TypeScript-New-Handbook/chapters/more-on-functions/#never](Never Type)

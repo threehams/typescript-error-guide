@@ -1,11 +1,13 @@
+go over all this "declare" stuff
+show how you can extend interfaces in modules
+
+```tsx
 import { Action, createStore, Dispatch } from "redux";
 
-// go over all this "declare" stuff
-// show how you can extend interfaces in modules
 declare module "redux" {
   type ThunkAction<TState, TAction> = (
     dispatch: Dispatch,
-    getState: () => TState
+    getState: () => TState,
   ) => TAction;
   type AnyThunk = ThunkAction<any, any>;
 
@@ -17,3 +19,4 @@ declare module "redux" {
     <T extends A>(action: T): (dispatch: Dispatch, getState: () => TState) => T;
   }
 }
+```

@@ -1,13 +1,12 @@
-// avoid polluting other files
-export {};
+go over "I narrowed and it widened my type in a callback"
+https://github.com/Microsoft/TypeScript/issues/9998
 
-// go over "I narrowed and it widened my type in a callback"
-// https://github.com/Microsoft/TypeScript/issues/9998
+tl;dr rules for avoiding this:
 
-// tl;dr rules for avoiding this:
-// 1. never reassign parameters. https://eslint.org/docs/rules/no-param-reassign
-// 2. use `const` unless you need `let` (enable the prefer-const eslint rule)
+1. never reassign parameters. https://eslint.org/docs/rules/no-param-reassign
+2. use `const` unless you need `let` (enable the prefer-const eslint rule)
 
+```tsx
 const maybeAsync = (callback: () => void) => {
   callback();
 };
@@ -22,17 +21,21 @@ const getLengthWithReassign = (item: string | null) => {
     item.length;
   });
 };
+```
 
-// if you don't have to deal with null, default values work well
+if you don't have to deal with null, default values work well
+
+```tsx
 const getLengthWithDefault = (item: string = "") => {
-  item = ""; // comment out this line to remove error
-  item.length; // OK
+  item.length;
   maybeAsync(() => {
     item.length;
   });
 };
 getLengthWithDefault(undefined);
+```
 
+```tsx
 const getLength = (item: string | null) => {
   if (!item) {
     return 0;
@@ -42,7 +45,9 @@ const getLength = (item: string | null) => {
     item.length;
   });
 };
+```
 
+```tsx
 const myFunc = (active: boolean) => {
   let className: string;
   if (active) {
@@ -56,7 +61,9 @@ const myFunc = (active: boolean) => {
     className.length;
   });
 };
+```
 
+```tsx
 function f(a: number[] | undefined) {
   if (a === undefined) {
     return [];
@@ -70,3 +77,4 @@ function f(a: number[] | undefined) {
       x + a.length,
   );
 }
+```

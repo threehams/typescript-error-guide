@@ -1,20 +1,15 @@
-// avoid polluting other files
-export {};
+## Related Issues
 
-// control flow analysis
-// https://github.com/Microsoft/TypeScript/issues/9998
+[Tradeoffs in Control Flow Analysis](https://github.com/Microsoft/TypeScript/issues/9998)
 
-// poor type inference for reduce for object[]
-// https://github.com/Microsoft/TypeScript/issues/25454
+[Poor type inference for reduce for object](https://github.com/Microsoft/TypeScript/issues/25454)
 
+```tsx
 function toStrings(arr: object[]): string[] {
-  return arr.reduce(
-    (acc, obj) => {
-      acc.push(obj.toString());
-      return acc;
-    },
-    [] as string[],
-  );
+  return arr.reduce((acc, obj) => {
+    acc.push(obj.toString());
+    return acc;
+  }, [] as string[]);
 }
 
 // for dictionaries, this is fine
@@ -57,3 +52,4 @@ const withoutNulls: number[] = arrayWithNulls.filter(
 // since this is tedious, and boolean cast wipes out 0 and "" anyway:
 const filterNulls = Array.prototype.filter(item => item != null);
 const noNulls: number[] = arrayWithNulls.filter(filterNulls);
+```

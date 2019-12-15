@@ -1,10 +1,11 @@
-export {};
-// The `void` is the absence of a type. It has one purpose: to
-// allow functions to return values which are ignored.
-// A practical use for this is an event handler which may want
-// to use a braceless arrow function.
+The `void` type is the absence of a type. It has one purpose: to
+allow functions to return values which are ignored.
+A practical use for this is an event handler which may want
+to use a braceless arrow function.
 
-// Contrast this with `undefined`, which enforces a return statement.
+Contrast this with `undefined`, which enforces a return statement.
+
+```tsx
 type OnMouseEnter = () => void;
 const onMouseEnter: OnMouseEnter = () => false; // fine
 const returnValue = onMouseEnter(); // returnValue === void
@@ -19,3 +20,4 @@ const returnUndefined = (): undefined => {
 const returnVoid = (): void => {
   return false; // error: false !== void
 };
+```
