@@ -1,6 +1,15 @@
-// Diagnostic codes: ts2339, ts2531, ts2532
-import { get } from "lodash";
-import { oc } from "ts-optchain";
+## Diagnostic Codes
+
+ts2339, ts2531, ts2532
+
+## Safely Accessing Properties on Objects
+
+```tsx
+declare const get: (
+  obj: any,
+  path: string | number | symbol,
+  defaultValue?: any,
+) => any;
 
 // go over: long vs. concise ways of dealing with deeply nested objects with conditionals
 interface UnreliableData {
@@ -15,10 +24,6 @@ interface UnreliableData {
 }
 
 const doStuff = (data?: UnreliableData) => {
-  // the future, but this is in stage 1 and may change
-  // const num = data?.mayExist?.deepMayExist?.nullableNumber ?? 0;
-  // const num = data?.mayExist?.deepMayExist?.nullableFunction?.("bob") ?? 0;
-
   // error: any nulls will cause runtime errors
   const unsafeNum = data.mayExist.deepMayExist.nullableNumber;
 
@@ -33,28 +38,28 @@ const doStuff = (data?: UnreliableData) => {
 
   // option 1: lodash get (or similar)
   // returns "any" and doesn't check any properties
-  const something = get(
-    data,
-    ["mayExist", "deepMayExist", "nullableNumber"],
-    0,
-  );
-  const notAnError = get(data, ["x", "y", "z"], "42");
+  const something = get(data, "mayExist.deepMayExist.nullableNumber", 0);
+  const notAnError = get(data, "x.y.z", "42");
 
-  // full type safety and autocompletion. requires babel/ts plugin for
-  // older browsers
-  const numberWithDefault = oc(data).mayExist.deepMayExist.nullableNumber(0);
-  const nullableNumber = oc(data).mayExist.deepMayExist.nullableNumber;
-  const nullableFunction = oc(data).mayExist.deepMayExist.nullableFunction;
-  const reversedByDefault = oc(data).mayExist.deepMayExist.nullableFunction(
-    name => name,
-  );
+  // full type safety and autocompletion
+  const numberWithDefault = data?.mayExist?.deepMayExist?.nullableNumber ?? 0;
+  const nullableNumber = data?.mayExist?.deepMayExist?.nullableNumber ?? 0;
+  const nullableFunction = data?.mayExist?.deepMayExist?.nullableFunction?.("");
+
   // this catches properties which don't exist
-  const intentionalError = oc(data).mayExist.fdsafdsavbfd.nullableNumber(0);
+  const intentionalError = data?.mayExist?.fdsafdsavbfd?.nullableNumber ?? 0;
   // and the default value needs to match the possible values
   // (the error message could be better here)
-  const badDefault = oc(data).mayExist.deepMayExist.nullableNumber("string");
+  const badDefault: number =
+    data?.mayExist?.deepMayExist?.nullableNumber ?? "string";
 };
+```
 
+but note that type narrowing is still necessary for union types since
+there's no way for typescript to differentiate between unions
+without your help.
+
+```tsx
 interface StructureOne {
   deepMayExist?: {
     nullableString?: string | null | undefined;
@@ -63,10 +68,6 @@ interface StructureOne {
     nullableFunction?: ((name: string) => string) | string | null;
   };
 }
-
-// but note that type narrowing is still necessary for union types since
-// there's no way for typescript to differentiate between unions
-// without your help.
 
 interface StructureTwo {
   somethingElse?: {
@@ -80,17 +81,18 @@ interface UnreliableUnionData {
 }
 
 const doStuffWithUnions = (data?: UnreliableUnionData) => {
-  oc(data).mayExist.somethingElse; // still can't just access properties that only exist on one
+  data?.mayExist.somethingElse; // still can't just access properties that only exist on one
 
   // need to split it up
-  const structure = oc(data).mayExist();
+  const structure = data?.mayExist;
   if (!!structure && "deepMayExist" in structure) {
-    oc(structure).deepMayExist.nullableNumber;
+    structure?.deepMayExist.nullableNumber;
   }
   // or do a type assertion (unsafe)
-  oc(structure as StructureOne).deepMayExist.nullableNumber(0);
+  (structure as StructureOne)?.deepMayExist.nullableNumber ?? 0;
 };
 
 const doStuffWithDefaults = (data: UnreliableData) => {
   const { deepMayExist } = data.mayExist || {};
 };
+```

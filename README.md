@@ -119,6 +119,8 @@ const containsDiv = React.Children.toArray(children).some((child: any) => {
 You're returning something from a function component which React doesn't accept, likely `undefined`. Your code might be fine now, but if it ever hits that `undefined` case, you'll get a runtime error.
 
 ```tsx
+import React from "react";
+
 interface Props {
   text?: string;
 }

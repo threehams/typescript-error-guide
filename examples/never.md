@@ -12,26 +12,32 @@ function fn(x: string | number): string {
 }
 ```
 
+Functions which throw will always have a `never` return type.
+
+```tsx
 function fail(msg: string): never {
-throw new Error(msg);
+  throw new Error(msg);
 }
+```
 
-// The other time you'll see `never` is when creating a new empty array, when
-// noImplicityAny is set to `false`. It is unlikely you will see this, but the
-// type defaults to `never[]` to prevent it from being inferred as `any[]`.
-// Simple fix: give it a type, or set `noImplicitAny` to true.
-// https://github.com/microsoft/TypeScript/pull/8944
+The other time you'll see `never` is when creating a new empty array, when
+noImplicityAny is set to `false`. It is unlikely you will see this, but the
+type defaults to `never[]` to prevent it from being inferred as `any[]`.
+Simple fix: give it a type, or set `noImplicitAny` to true.
+https://github.com/microsoft/TypeScript/pull/8944
 
-// Sometimes `never[]` is really a symptom of another error. Here's a case where
-// an object is
+Sometimes `never[]` is really a symptom of another error. Here's a case where
+an object is
 
+```tsx
 type Resolver = {
-location: { city: string; state: string };
+  location: { city: string; state: string };
 };
 
 const resolver: Resolver = {
-location: [],
+  location: [],
 };
+```
 
 ## References
 

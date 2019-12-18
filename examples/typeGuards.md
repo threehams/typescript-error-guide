@@ -1,6 +1,4 @@
 // diagnostic codes: ts2339
-// avoid polluting other files
-export {};
 
 // go over: why property accesses are checked for union types
 // it's important for refactoring, types go both ways

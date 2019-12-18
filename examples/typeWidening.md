@@ -1,3 +1,9 @@
+## Type Narrowing and Widening
+
+Narrowing and widening are both related to
+
+## Where Narrowing is Lost
+
 go over "I narrowed and it widened my type in a callback"
 https://github.com/Microsoft/TypeScript/issues/9998
 
@@ -7,6 +13,11 @@ tl;dr rules for avoiding this:
 2. use `const` unless you need `let` (enable the prefer-const eslint rule)
 
 ```tsx
+const thing: string = "thing";
+if (thing === "thing") {
+  thing;
+}
+
 const maybeAsync = (callback: () => void) => {
   callback();
 };
@@ -61,20 +72,4 @@ const myFunc = (active: boolean) => {
     className.length;
   });
 };
-```
-
-```tsx
-function f(a: number[] | undefined) {
-  if (a === undefined) {
-    return [];
-  }
-
-  // Works
-  a = a.map(x => x + 1);
-  return a.map(
-    x =>
-      // Error: Object is possibly 'undefined'.
-      x + a.length,
-  );
-}
 ```

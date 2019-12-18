@@ -1,9 +1,8 @@
-// avoid polluting other files
-export {};
-declare const camelizeKeys: (obj: object) => object;
+example: camelize/decamelize. not worth typing. do it
+before reaching typed code
 
-// example: camelize/decamelize. not worth typing. do it
-// before reaching typed code
+```tsx
+declare const camelizeKeys: (obj: object) => object;
 
 interface UserResponse {
   [key: string]: {
@@ -16,3 +15,4 @@ interface UserResponse {
 fetch("/users")
   .then(response => response.json())
   .then(json => camelizeKeys(json) as UserResponse);
+```
