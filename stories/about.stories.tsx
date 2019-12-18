@@ -3,7 +3,7 @@ import readme from "../README.md";
 import { MarkdownDocs } from "./components/MarkdownDocs";
 
 export default {
-  title: "FAQ",
+  title: "About",
 };
 
-export const faq = () => <MarkdownDocs>{readme}</MarkdownDocs>;
+export const errors = () => <MarkdownDocs>{readme}</MarkdownDocs>;

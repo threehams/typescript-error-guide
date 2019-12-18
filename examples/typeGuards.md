@@ -1,12 +1,15 @@
-// diagnostic codes: ts2339
+## Diagnostic Codes
 
-// go over: why property accesses are checked for union types
-// it's important for refactoring, types go both ways
+ts2339
 
-// Why can't I just access a property?
-// because you're not just changing your code, you want to
-// be able to change the underlying data as well
+go over: why property accesses are checked for union types
+it's important for refactoring, types go both ways
 
+Why can't I just access a property?
+because you're not just changing your code, you want to
+be able to change the underlying data as well
+
+```tsx
 interface VideoWithType {
   type: "video";
   url: string;
@@ -36,10 +39,13 @@ interface Photo {
   type: "photo";
   url: string;
 }
+```
 
-// using `in` is "less safe" for refactoring than other guards.
-// You can check any property, even something that doesn't exist on
-// either object. Use with caution.
+using `in` is "less safe" for refactoring than other guards.
+You can check any property, even something that doesn't exist on
+either object. Use with caution.
+
+```tsx
 const showMoreMedia = (media: Photo | Video) => {
   if (media.type === "photo") {
     media; // Photo
@@ -58,3 +64,4 @@ const showMoreMedia = (media: Photo | Video) => {
     media; // Photo | Video
   }
 };
+```

@@ -6,8 +6,6 @@ function fn(x: string | number): string {
     return x;
   } else if (typeof x === "number") {
     return x.toString();
-  } else {
-    x; // has type 'never'!
   }
 }
 ```

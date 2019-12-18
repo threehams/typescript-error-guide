@@ -1,4 +1,4 @@
-This seems wrong...
+In this example
 
 ```tsx
 const array = [0, 1];
