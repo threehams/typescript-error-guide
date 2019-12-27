@@ -5,6 +5,12 @@ help to distinguish JSX from type parameters.
 The first case this can happen is when defining a generic function inline:
 
 ```tsx
+import React from "react";
+
+const Button: React.FC = ({ children }) => {
+  return <button>{children}</button>;
+}
+
 // uncomment this block to see syntax error
 const identity = <T>(item: T): T => {
   return item;
@@ -12,7 +18,7 @@ const identity = <T>(item: T): T => {
 ```
 
 Adding `extends any` works. This doesn't force the parameter to `any` - it
-just allows anything to be used as a parameter. See: bounded-type-parameters.ts
+just allows anything to be used as a parameter. See: [Bounded Type Parameters](boundedTypeParameters).
 
 ```tsx
 const identity = <T extends any>(item: T): T => {

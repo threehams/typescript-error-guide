@@ -1,4 +1,9 @@
 declare module "*.md" {
-  declare const contents: string;
+  const contents: string;
+  export default contents;
+}
+
+declare module "!file-loader!*" {
+  const contents: string;
   export default contents;
 }

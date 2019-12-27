@@ -16,5 +16,6 @@ module.exports = async ({ config }) => {
   config.plugins.push(new MonacoWebpackPlugin());
   config.resolve.extensions = [".ts", ".tsx", ".js"];
   config.externals = { "@microsoft/typescript-etw": "FakeModule" };
+  config.stats = "errors-only";
   return config;
 };

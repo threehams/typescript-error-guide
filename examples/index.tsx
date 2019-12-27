@@ -1,5 +1,5 @@
 export { default as arrayElementAccess } from "./arrayElementAccess.md";
-// export { default as boundedTypeParameters } from "./boundedTypeParameters.md";
+export { default as boundedTypeParameters } from "./boundedTypeParameters.md";
 export { default as buildUpObject } from "./buildUpObject.md";
 // export { default as definitionFiles } from "./definitionFiles.md";
 // export { default as dependentProperties } from "./dependentProperties.md";
