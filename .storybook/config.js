@@ -6,6 +6,7 @@ import { addDecorator } from "@storybook/react";
 configure(require.context("../stories", true, /\.stories\.tsx$/), module);
 
 const styles = {
+  color: "#333",
   fontFamily: "Open Sans, sans-serif",
   fontSize: "1rem",
   maxWidth: 1000,

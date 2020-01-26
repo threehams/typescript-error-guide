@@ -17,6 +17,7 @@ const Link = ({ href, children }: LinkProps) => {
   }
   return <LinkTo story={kebabCase(href)}>{children}</LinkTo>;
 };
+
 interface EditorSwitchProps {
   children?: ReactNode;
   className?: string;
@@ -25,10 +26,21 @@ const EditorSwitch = ({
   children,
   className,
 }: EditorSwitchProps): ReactElement => {
-  if (typeof children === "string") {
-    return <Editor className={className}>{children}</Editor>;
+  if (typeof children === "string" && className === "lang-tsx") {
+    return <Editor>{children}</Editor>;
   }
-  return <div>{children}</div>;
+  return (
+    <span
+      style={{
+        whiteSpace: "pre",
+        display: "inline-block",
+        backgroundColor: "#eee",
+        padding: "0 3px",
+      }}
+    >
+      {children}
+    </span>
+  );
 };
 
 interface MarkdownDocsProps {

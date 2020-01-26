@@ -8,6 +8,7 @@ export { default as excessPropertyChecking } from "./excessPropertyChecking.md";
 export { default as extendingModules } from "./extendingModules.md";
 export { default as filterReduce } from "./filterReduce.md";
 export { default as generics } from "./generics.md";
+export { default as indexSignatures } from "./indexSignatures.md";
 export { default as limitations } from "./limitations.md";
 // export { default as missingDeclarations } from "./missingDeclarations.md";
 // export { default as monacoEditor } from "./monacoEditor.md";

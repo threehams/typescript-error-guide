@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useRef, useState } from "react";
 import MonacoEditor from "react-monaco-editor";
 import { languages, editor, Uri } from "monaco-editor";
 import esObject from "!raw-loader!typescript/lib/lib.es2017.object.d.ts";
@@ -45,51 +45,43 @@ const generateModel = (code: string) => {
 
 interface EditorProps {
   children: string;
-  className?: string;
 }
-export const Editor = ({ children, className }: EditorProps) => {
-  const model = React.useRef(generateModel(children));
-  const [code, setCode] = React.useState(children);
-  if (className === "lang-tsx") {
-    const height = code.split(/\r\n|\r|\n/).length * 19 + 1;
+export const Editor = memo(({ children }: EditorProps) => {
+  const model = useRef(generateModel(children));
+  const [code, setCode] = useState(children);
+  const height = code.split(/\r\n|\r|\n/).length * 19 + 1;
 
-    return (
-      <div
-        style={{
-          backgroundColor: "#1e1e1e",
-          padding: "20px 10px",
-          borderRadius: 10,
-        }}
-      >
-        <MonacoEditor
-          defaultValue={code}
-          value={code}
-          onChange={newCode => setCode(newCode)}
-          height={height}
-          width="100%"
-          language="typescript"
-          options={{
-            model: model.current,
-            scrollbar: {
-              vertical: "hidden",
-              verticalHasArrows: false,
-              verticalScrollbarSize: 0,
-              verticalSliderSize: 0,
-            },
-            scrollBeyondLastLine: false,
-            theme: "vs-dark",
-            minimap: {
-              enabled: false,
-            },
-            folding: false,
-          }}
-        />
-      </div>
-    );
-  }
   return (
-    <span style={{ whiteSpace: "pre", display: "inline-block" }}>
-      {children}
-    </span>
+    <div
+      style={{
+        backgroundColor: "#1e1e1e",
+        padding: "20px 10px",
+        borderRadius: 10,
+      }}
+    >
+      <MonacoEditor
+        defaultValue={code}
+        value={code}
+        onChange={newCode => setCode(newCode)}
+        height={height}
+        width="100%"
+        language="typescript"
+        options={{
+          model: model.current,
+          scrollbar: {
+            vertical: "hidden",
+            verticalHasArrows: false,
+            verticalScrollbarSize: 0,
+            verticalSliderSize: 0,
+          },
+          scrollBeyondLastLine: false,
+          theme: "vs-dark",
+          minimap: {
+            enabled: false,
+          },
+          folding: false,
+        }}
+      />
+    </div>
   );
-};
+});
