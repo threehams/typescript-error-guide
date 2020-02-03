@@ -1,6 +1,8 @@
-diagnostic codes: ts2339, ts2741
+# Building Up an Object (Limitation)
 
 ## Related Issues
+
+diagnostic codes: ts2339, ts2741
 
 [Issue #9998: Tradeoffs in Control Flow Analysis](https://github.com/Microsoft/TypeScript/issues/9998)
 

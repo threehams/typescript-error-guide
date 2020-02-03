@@ -1,3 +1,5 @@
+# Extending Modules (Feature)
+
 go over all this "declare" stuff
 show how you can extend interfaces in modules
 

@@ -1,6 +1,12 @@
-## Type Narrowing and Widening
+# Type Widening (Quirk)
 
-Narrowing and widening are both related to
+Literal Type Widening is...
+
+## Related Issues
+
+https://github.com/Microsoft/TypeScript/issues/10938#issuecomment-247476364
+https://github.com/microsoft/TypeScript/issues/20195
+https://twitter.com/kentcdodds/status/1081333326290415618
 
 ## Where Narrowing is Lost
 

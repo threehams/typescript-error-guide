@@ -1,3 +1,5 @@
+# Return Value Types (Concept)
+
 go over: return values can be inferred, but the more complex
 the function, the more you're going to want to specify them.
 

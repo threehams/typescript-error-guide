@@ -1,3 +1,5 @@
+# Object Type (Quirk)
+
 The `object` type is when you have no way of knowing
 what an object is ahead of time.
 
