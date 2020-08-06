@@ -24,7 +24,7 @@ export { default as tsxFiles } from "./tsxFiles.md";
 // export { default as typeAssertions } from "./typeAssertions.md";
 export { default as typeGuards } from "./typeGuards.md";
 // export { default as typesWithoutImplementations } from "./typesWithoutImplementations.md";
-export { default as typeWidening } from "./typeWidening.md";
+export { default as widening } from "./widening.md";
 export { default as voidType } from "./voidType.md";
 // export { default as whatTypesafeMeans } from "./whatTypesafeMeans.md";
 // export { default as whenToBailOut } from "./whenToBailOut.md";
