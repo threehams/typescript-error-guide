@@ -1,12 +1,12 @@
-import React, { ReactElement, ReactNode } from "react";
+import React from "react";
 import { Editor } from "./Editor";
 import Markdown from "markdown-to-jsx";
-import LinkTo from "@storybook/addon-links/dist/react";
+import NextLink from "next/link";
 import { kebabCase } from "lodash";
 
 interface LinkProps {
   href?: string;
-  children?: ReactNode;
+  children?: string;
 }
 const Link = ({ href, children }: LinkProps) => {
   if (!href) {
@@ -15,18 +15,22 @@ const Link = ({ href, children }: LinkProps) => {
   if (href.startsWith("http")) {
     return <a href={href}>{children}</a>;
   }
-  return <LinkTo story={kebabCase(href)}>{children}</LinkTo>;
+  return (
+    <NextLink href={kebabCase(href)}>
+      <a>{children}</a>
+    </NextLink>
+  );
 };
 
 interface EditorSwitchProps {
-  children?: ReactNode;
+  children: string;
   className?: string;
 }
 const EditorSwitch = ({
   children,
   className,
-}: EditorSwitchProps): ReactElement => {
-  if (typeof children === "string" && className === "lang-tsx") {
+}: EditorSwitchProps): React.ReactElement => {
+  if (className === "lang-tsx") {
     return <Editor>{children}</Editor>;
   }
   return (
@@ -44,7 +48,7 @@ const EditorSwitch = ({
 };
 
 interface MarkdownDocsProps {
-  children: ReactNode;
+  children: string;
 }
 export const MarkdownDocs = ({ children }: MarkdownDocsProps) => {
   return (
