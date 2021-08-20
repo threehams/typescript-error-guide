@@ -12,6 +12,8 @@
     "@emotion/babel-preset-css-prop": "^11.0.0",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
+    "@types/lodash": "^4.14.166",
+    "lodash": "^4.17.20",
     "markdown-to-jsx": "^7.1.0",
     "next": "10.0.4",
     "react": "17.0.1",

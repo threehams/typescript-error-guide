@@ -12,6 +12,7 @@ export { default as indexSignatures } from "./indexSignatures.md";
 export { default as limitations } from "./limitations.md";
 // export { default as missingDeclarations } from "./missingDeclarations.md";
 // export { default as monacoEditor } from "./monacoEditor.md";
+export { default as narrowing } from "./narrowing.md";
 export { default as never } from "./never.md";
 export { default as objectKeysAndEntries } from "./objectKeysAndEntries.md";
 export { default as objectType } from "./objectType.md";

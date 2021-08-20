@@ -36,6 +36,7 @@ export const MonacoProvider = ({ children }: MonacoProviderProps) => {
     null,
   );
   useEffect(() => {
+    console.log("loading stuff");
     // First set up the VSCode loader in a script tag
     const loaderScript = document.createElement("script");
     loaderScript.src = "https://www.typescriptlang.org/js/vs.loader.js";
@@ -87,7 +88,7 @@ export const MonacoProvider = ({ children }: MonacoProviderProps) => {
     };
 
     document.body.appendChild(loaderScript);
-  });
+  }, []);
   return (
     <>
       <MonacoContext.Provider value={{ loading, createSandbox, error }}>

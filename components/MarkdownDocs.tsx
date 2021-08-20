@@ -2,7 +2,6 @@ import React from "react";
 import { Editor } from "./Editor";
 import Markdown from "markdown-to-jsx";
 import NextLink from "next/link";
-import { kebabCase } from "lodash";
 
 interface LinkProps {
   href?: string;
@@ -16,7 +15,7 @@ const Link = ({ href, children }: LinkProps) => {
     return <a href={href}>{children}</a>;
   }
   return (
-    <NextLink href={kebabCase(href)}>
+    <NextLink href={href}>
       <a>{children}</a>
     </NextLink>
   );

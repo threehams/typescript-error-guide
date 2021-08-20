@@ -21,6 +21,7 @@ export const Editor = ({ children }: EditorProps) => {
 
   const height = children.split(/\r\n|\r|\n/).length * 19 + 1;
   useEffect(() => {
+    console.log("creating sandbox");
     createSandbox?.({
       text: children,
       compilerOptions: {},
